@@ -29,7 +29,7 @@ export default function MovieDetailsPage() {
           <h4>Genres</h4>
           {genres &&
             genres.map(genre => {
-              return <p key={shortid.generate()}>{genre.name}</p>;
+              return <span key={shortid.generate()}>{genre.name} </span>;
             })}
 
           <img
