@@ -13,7 +13,7 @@ function Loading() {
     >
       <Loader
         type="Hearts"
-        color="red"
+        color="rgb(110, 43, 216)"
         height={100}
         width={100}
         timeout={3000}

@@ -1,0 +1,20 @@
+.movie__cast {
+  display: flex;
+  flex-wrap: wrap;
+
+  & img {
+    background-color: rgb(170, 180, 226);
+  }
+
+  & li {
+    flex-basis: 20%;
+    padding: 30px;
+
+    & p {
+      padding-top: 5px;
+      &:last-child {
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -2,25 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import shortid from 'shortid';
 import FetchMovies from 'api/movies';
+import s from './Reviews.module.scss';
+
 const api = new FetchMovies();
 
-export default function Cast() {
+export default function Rewievs() {
   const { movieId } = useParams();
 
-  const [data, setData] = useState({});
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     api.getMovieReviews(movieId).then(data => {
-      setData(data);
+      setReviews(data.results);
     });
-
-    setReviews(data.results);
-  }, [movieId, data.results]);
+  }, [movieId]);
 
   return (
     <>
-      <ul>
+      <ul className={s.reviews__main}>
         {reviews &&
           reviews.map(review => {
             return (

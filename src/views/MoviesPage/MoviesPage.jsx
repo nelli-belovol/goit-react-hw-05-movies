@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import s from './MoviesPage.module.scss';
 import FetchMovies from 'api/movies';
 const api = new FetchMovies();
 
@@ -24,7 +25,7 @@ export default function MoviesPage() {
 
   return (
     <>
-      <form onSubmit={handleSearchSubmit}>
+      <form onSubmit={handleSearchSubmit} className={s.form}>
         <input
           value={value}
           onChange={onChange}
@@ -36,12 +37,12 @@ export default function MoviesPage() {
 
         <button type="submit">Поиск</button>
       </form>
-      <ul>
+      <ul className={s.movies__list}>
         {movies &&
           movies.map(movie => {
             return (
-              <li key={movie.id}>
-                <Link to={`/movies/${movie.id}`}>
+              <li className={s.movies__item} key={movie.id}>
+                <Link to={`/movies/${movie.id}`} className={s.movies__link}>
                   {movie.title ? movie.title : movie.name}
                 </Link>
               </li>

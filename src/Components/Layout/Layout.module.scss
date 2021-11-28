@@ -1,0 +1,36 @@
+.nav__container {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  background: rgb(12, 8, 85);
+  background: linear-gradient(
+    90deg,
+    rgba(12, 8, 85, 1) 0%,
+    rgba(102, 21, 228, 1) 50%,
+    rgba(190, 171, 238, 1) 100%
+  );
+  text-align: center;
+}
+
+.nav__link {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+
+// .nav__link.active {
+//   color: red;
+//   text-decoration: none;
+//   text-transform: uppercase;
+
+//   &:not(:last-child) {
+//     margin-right: 20px;
+//   }
+// }
