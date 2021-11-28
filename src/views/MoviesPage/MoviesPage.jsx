@@ -1,25 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import s from './MoviesPage.module.scss';
-import FetchMovies from 'api/movies';
-const api = new FetchMovies();
 
-export default function MoviesPage() {
-  const [movies, setMovies] = useState([]);
+export default function MoviesPage({ movies, onSubmit }) {
   const [value, setValue] = useState('');
 
   const onChange = e => {
     setValue(e.target.value);
   };
 
-  const setMoviesToState = async query => {
-    const dataMovies = await api.searchMovies(query);
-    setMovies(dataMovies);
-  };
-
-  const handleSearchSubmit = e => {
+  const handleSearchSubmit = async e => {
     e.preventDefault();
-    setMoviesToState(value);
+    await onSubmit(value);
     setValue('');
   };
 
