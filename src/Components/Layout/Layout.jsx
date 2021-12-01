@@ -6,10 +6,20 @@ export default function Layout() {
   return (
     <>
       <nav className={s.nav__container}>
-        <NavLink to="/" className={s.nav__link}>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `${s.nav__link} ${isActive ? s.nav__linkactive : ''}`
+          }
+        >
           Home
         </NavLink>
-        <NavLink to="/movies" className={s.nav__link}>
+        <NavLink
+          to="/movies"
+          className={({ isActive }) =>
+            `${s.nav__link} ${isActive ? s.nav__linkactive : ''}`
+          }
+        >
           Movies
         </NavLink>
       </nav>

@@ -25,12 +25,7 @@
   }
 }
 
-// .nav__link.active {
-//   color: red;
-//   text-decoration: none;
-//   text-transform: uppercase;
-
-//   &:not(:last-child) {
-//     margin-right: 20px;
-//   }
-// }
+.nav__linkactive {
+  color: rgb(239, 241, 82);
+  font-weight: 500;
+}
