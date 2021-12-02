@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import s from './MoviesPage.module.scss';
+import React, { useState, useEffect } from 'react';
 
-export default function MoviesPage({ movies, onSubmit }) {
+import s from './MoviesPage.module.scss';
+import { useSearchParams } from 'react-router-dom';
+
+import MoviesList from '../../Components/MoviesList/MoviesList';
+import FetchMovies from 'api/movies';
+const api = new FetchMovies();
+
+export default function MoviesPage() {
+  const [movies, setMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [value, setValue] = useState('');
 
   const onChange = e => {
@@ -11,9 +18,19 @@ export default function MoviesPage({ movies, onSubmit }) {
 
   const handleSearchSubmit = async e => {
     e.preventDefault();
-    await onSubmit(value);
-    setValue('');
+
+    setSearchParams({ search: value });
   };
+
+  useEffect(() => {
+    if (searchParams.get('search') === null) {
+      return;
+    } else {
+      api
+        .searchMovies(searchParams.get('search'))
+        .then(dataMovies => setMovies(dataMovies));
+    }
+  }, [searchParams]);
 
   return (
     <>
@@ -29,18 +46,7 @@ export default function MoviesPage({ movies, onSubmit }) {
 
         <button type="submit">Поиск</button>
       </form>
-      <ul className={s.movies__list}>
-        {movies &&
-          movies.map(movie => {
-            return (
-              <li className={s.movies__item} key={movie.id}>
-                <Link to={`/movies/${movie.id}`} className={s.movies__link}>
-                  {movie.title ? movie.title : movie.name}
-                </Link>
-              </li>
-            );
-          })}
-      </ul>
+      {searchParams.get('search') && <MoviesList movies={movies} />}
     </>
   );
 }
